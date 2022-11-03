@@ -109,13 +109,11 @@ class SentinelClient(DefaultClient):
         """
         self.log.debug("close called")
         if self._client_read:
-            self._client_read.connection_pool.disconnect(
-                inuse_connections=False)
+            self._client_read.connection_pool.disconnect()
             self.log.debug("client_read closed")
 
         if self._client_write:
-            self._client_write.connection_pool.disconnect(
-                inuse_connections=False)
+            self._client_write.connection_pool.disconnect()
             self.log.debug("client_write closed")
 
         del(self._client_write)
